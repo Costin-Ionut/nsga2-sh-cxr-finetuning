@@ -1,0 +1,189 @@
+{
+  "num_classes": 2,
+  "search_img_size": 160,
+  "final_img_size": 224,
+  "model_names": [
+    "densenet",
+    "mobilenet",
+    "efficientnet",
+    "resnet"
+  ],
+  "pop_size": 12,
+  "generations": 6,
+  "crossover_rate": 0.9,
+  "mutation_rate": 0.2,
+  "budgets": [
+    {
+      "name": "B0",
+      "e1": 3,
+      "e2": 0,
+      "steps_factor": 0.4,
+      "search_reps": 1,
+      "final_reps": 1,
+      "promote_frac": 0.4
+    },
+    {
+      "name": "B1",
+      "e1": 4,
+      "e2": 2,
+      "steps_factor": 0.6,
+      "search_reps": 1,
+      "final_reps": 1,
+      "promote_frac": 0.4
+    },
+    {
+      "name": "B2",
+      "e1": 6,
+      "e2": 3,
+      "steps_factor": 1.0,
+      "search_reps": 1,
+      "final_reps": 2,
+      "promote_frac": 1.0
+    }
+  ],
+  "promote_frac": 0.4,
+  "unfreeze_cap": {
+    "mobilenet": 90,
+    "efficientnet": 140,
+    "resnet": 90,
+    "densenet": 90,
+    "inception": 80
+  },
+  "search_space": {
+    "base_lr1": [
+      3e-05,
+      0.0001,
+      0.0002,
+      0.0003
+    ],
+    "base_lr2": [
+      2e-06,
+      5e-06,
+      1e-05
+    ],
+    "n_last_layers": [
+      0,
+      5,
+      10,
+      20,
+      40
+    ],
+    "dense_units": [
+      128,
+      256,
+      512
+    ],
+    "dropout": [
+      0.2,
+      0.5
+    ],
+    "l2_weight": [
+      0.0,
+      1e-06,
+      1e-05,
+      0.0001
+    ],
+    "batch_size": [
+      16,
+      32
+    ],
+    "aug_rotation": [
+      0.0,
+      0.1
+    ],
+    "aug_zoom": [
+      0.0,
+      0.1
+    ],
+    "aug_contrast": [
+      0.0,
+      0.1
+    ],
+    "lr_mul_bounds": [
+      0.8,
+      1.4
+    ]
+  },
+  "out_dir": "paper_runs_publication",
+  "test_from_tags": [
+    "nsga2",
+    "random_sh",
+    "baseline_feature_extractor",
+    "baseline_standard_finetune",
+    "baseline_manual_tuned"
+  ],
+  "test_topk_per_tag": 1,
+  "test_e1": 10,
+  "test_e2": 5,
+  "final_retrain_mode": "train_plus_val_fixed_epochs",
+  "final_retrain_uses_validation": false,
+  "dataset_root_windows": "",
+  "dataset_root_kaggle": "/kaggle/input/datasets/romanatanase/pneumonia-balanced-dataset-clean",
+  "complexity_weights": {
+    "params_m": 0.55,
+    "time_h": 0.35,
+    "size_ratio": 0.1,
+    "_note": "Complexity score is a weighted sum of min-max normalized cost components: trainable parameters, wall-clock time in hours, and input-size ratio. Lower is better; clipping keeps the diagnostic score finite and comparable for publication tables.",
+    "params_m_min": 1.0,
+    "params_m_max": 100.0,
+    "time_h_min": 0.0,
+    "time_h_max": 24.0,
+    "size_ratio_min": 0.5,
+    "size_ratio_max": 1.5,
+    "clip_normalized": true
+  },
+  "kaggle_dataset_handle": "romanatanase/pneumonia-balanced-dataset",
+  "kaggle_dataset_version": 1,
+  "test_selection_policy": {
+    "summary_budget": "highest_available_budget",
+    "per_tag_candidates_sent_to_test": 1,
+    "notes": "Per-tag candidate preselection and final backbone/run selection are both validation-only and both use the same true three-objective Pareto rule over validation error, runtime, and trainable parameters. After selection, the final model is retrained on train+val with fixed epochs and no validation-driven callbacks before a single held-out test evaluation. Ablations remain validation-only and are excluded from final test evaluation.",
+    "backbone_selection_objectives": [
+      "auc_loss",
+      "time_s",
+      "trainable_params_m"
+    ],
+    "baseline_note": "Literature-style baselines include a frozen feature extractor, a standard partial fine-tuning recipe, and a small manual tuning grid without GA/Bayesian search.",
+    "selection_note": "Search optimizes mean validation AUC, mean runtime per run, and mean trainable parameters as three Pareto objectives. Per-tag top-k genome preselection is restricted to Pareto-ranked validation summaries and uses minimum normalized Euclidean distance to the ideal point over validation error, runtime, and trainable parameters within each non-dominated layer. Final backbone/run selection uses the same rule on validation candidates. After selection, the chosen model is retrained on the union of train and validation splits with a fixed two-stage schedule and without validation-based early stopping or learning-rate adaptation.",
+    "summary_selection_objectives": [
+      "auc_loss",
+      "time_s",
+      "trainable_params_m"
+    ],
+    "summary_selection_runtime_metrics": [
+      "mean_val_auc",
+      "mean_time_s_per_run",
+      "mean_trainable_params_m"
+    ],
+    "backbone_selection_runtime_metrics": [
+      "best_val_auc",
+      "time_s",
+      "trainable_params_m"
+    ],
+    "selection_protocol": {
+      "name": "validation_only_pareto_ideal_point_3d",
+      "method": "pareto_ideal_point_3d",
+      "normalization": "minmax"
+    }
+  },
+  "dataset_root_kaggle_alt": "/kaggle/working/chest-xray-pneumonia-balanced-dataset",
+  "search_seeds": [
+    42
+  ],
+  "final_seeds": [
+    999,
+    1337,
+    7777
+  ],
+  "selection_source_seed": 42,
+  "search_runtime": {
+    "auc_thresholds": 200,
+    "compute_pr_auc": false,
+    "min_steps_fraction": 0.25
+  },
+  "final_runtime": {
+    "auc_thresholds": 1000,
+    "compute_pr_auc": true,
+    "min_steps_fraction": 1.0
+  }
+}

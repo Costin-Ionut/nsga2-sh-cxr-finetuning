@@ -1,0 +1,164 @@
+# ==================================================
+# Python cache / build artifacts
+# ==================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# ==================================================
+# Virtual environments
+# ==================================================
+.venv/
+venv/
+env/
+ENV/
+
+# ==================================================
+# Jupyter / notebook cache
+# ==================================================
+.ipynb_checkpoints/
+
+# ==================================================
+# IDE / OS files
+# ==================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==================================================
+# Local environment / secrets
+# ==================================================
+.env
+.env.*
+kaggle.json
+*.key
+*.pem
+
+# ==================================================
+# Dataset folders
+# ==================================================
+data/
+datasets/
+dataset/
+input/
+kaggle/input/
+kaggle/working/
+
+# ==================================================
+# Experiment outputs
+# ==================================================
+outputs/
+runs/
+logs/
+checkpoints/
+models/
+saved_models/
+paper_runs_publication/
+publication_runs/
+final_runs/
+baseline_runs/
+ablation_runs/
+search_runs/
+
+# ==================================================
+# TensorFlow / cache folders
+# ==================================================
+tf_cache/
+finetuned_ga_tf_cache/
+.keras/
+tensorboard/
+events.out.tfevents.*
+
+# ==================================================
+# Large model artifacts
+# ==================================================
+*.keras
+*.h5
+*.hdf5
+*.ckpt
+*.weights.h5
+*.pb
+*.tflite
+*.onnx
+
+# ==================================================
+# Archives / compressed files
+# ==================================================
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.tbz
+*.tbz2
+*.tar.xz
+*.txz
+*.tar.zst
+*.gz
+*.bz2
+*.xz
+*.zst
+*.lz
+*.lzma
+*.rar
+*.7z
+*.cab
+*.iso
+
+# ==================================================
+# Logs and temporary files
+# ==================================================
+*.log
+*.tmp
+*.bak
+*.old
+
+# ==================================================
+# Generated plots/reports
+# ==================================================
+figures/generated/
+reports/generated/
+
+# ==================================================
+# Do not publish auxiliary local scripts
+# ==================================================
+run_ablations.sh
+run_baselines.sh
+run_evaluate_and_test.sh
+run_nsga2_search.sh
+prepare_3x3_layout.py
+
+# ==================================================
+# Keep these important project files tracked
+# ==================================================
+!README.md
+!requirements.txt
+!pyproject.toml
+!config.json
+
+!configs/
+!configs/*.json
+
+!run_paper_reproduction.sh
+
+!experiments/
+!finetune_ga/
+!tests/
+
+!paper_artifacts/
+!paper_artifacts/*.csv
+!paper_artifacts/*.json
+!paper_artifacts/*.jsonl
+!paper_artifacts/*.txt
+
+!docs/
+!docs/*.pdf
