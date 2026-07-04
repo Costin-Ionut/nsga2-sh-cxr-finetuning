@@ -9,11 +9,17 @@ The project evaluates resource-aware fine-tuning configurations for binary chest
 ## Repository contents
 
 ├── config.json                  # Main experiment configuration
+
 ├── run_paper_reproduction.sh    # Full reproduction entry point
+
 ├── requirements.txt             # Runtime dependencies
+
 ├── pyproject.toml               # Package metadata and test configuration
+
 ├── experiments/                 # Experiment orchestration and analysis entry points
+
 ├── finetune_ga/                 # Core implementation
+
 └── tests/                       # Tests
 
 The experiments were developed for Python 3.10--3.12 and TensorFlow 2.19.0. The reported runs were executed on Kaggle with two NVIDIA Tesla T4 GPUs.
