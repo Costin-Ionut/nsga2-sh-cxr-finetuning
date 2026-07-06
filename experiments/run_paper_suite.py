@@ -26,7 +26,7 @@ SCRIPT_STEPS = [
     # ["-m", "finetune_ga.baselines.ga_no_sh"],
 
     
-    # ["-m", "finetune_ga.baselines.optuna_bohb"],
+    ["-m", "finetune_ga.baselines.optuna_bohb"],
     # Appendix
     # ["-m", "finetune_ga.baselines.optuna_full"],
 
