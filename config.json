@@ -108,6 +108,7 @@
   "test_from_tags": [
     "nsga2",
     "random_sh",
+    "optuna_bohb_style",
     "baseline_feature_extractor",
     "baseline_standard_finetune",
     "baseline_manual_tuned"
